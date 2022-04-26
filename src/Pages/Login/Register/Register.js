@@ -6,6 +6,7 @@ import auth from "../../../firebase.init";
 import SocialLogin from "../SocialLogin/SocialLogin";
 import Loading from "../../Shared/Loading/Loading";
 import PageTitle from "../../Shared/PageTitle/PageTitle";
+import useToken from "../../../hooks/useToken";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -14,6 +15,7 @@ const Register = () => {
     useCreateUserWithEmailAndPassword(auth, {sendEmailVerification: true});
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
   const [passwordShow, setPasswordShow] = useState(false);
+  const [token] = useToken(user);
   if (loading || updating ) {
     return <Loading></Loading>;
   }
@@ -25,11 +27,10 @@ const Register = () => {
     // const agree = event.target.terms.checked;
     await createUserWithEmailAndPassword(email, password);
     await updateProfile({ displayName: name });
-    navigate("/");
     // .then(result => console.log(result))
   };
-  if (user) {
-    
+  if (token) {
+    navigate("/");
     console.log(user);
   }
   return (

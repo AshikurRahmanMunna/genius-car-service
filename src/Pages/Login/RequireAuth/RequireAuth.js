@@ -3,7 +3,7 @@ import { useAuthState, useSendEmailVerification } from "react-firebase-hooks/aut
 import { Navigate, useLocation } from "react-router-dom";
 import auth from "../../../firebase.init";
 import Loading from "../../Shared/Loading/Loading";
-import {toast, ToastContainer} from 'react-toastify';
+import {toast} from 'react-toastify';
 
 const RequireAuth = ({ children }) => {
   const [user, loading] = useAuthState(auth);
@@ -30,7 +30,6 @@ const RequireAuth = ({ children }) => {
       >
         Send verification email again
       </button>
-      <ToastContainer></ToastContainer>
       </div>
     );
   }

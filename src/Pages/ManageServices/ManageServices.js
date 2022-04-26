@@ -5,7 +5,7 @@ const ManageServices = () => {
     const [services, setServices] = useServices();
     const handleDelete = id => {
         const proceed = window.confirm(`Are You sure want to delete This service`);
-        const url = `http://localhost:5000/service/${id}`;
+        const url = `https://powerful-hollows-72000.herokuapp.com/service/${id}`;
         if(proceed) {
             fetch(url, {
                 method: 'DELETE',
